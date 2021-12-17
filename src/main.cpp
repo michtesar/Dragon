@@ -26,20 +26,6 @@ void unfoldCurve(sf::RenderWindow* window, int maxIteration, int iteration, floa
     }
 }
 
-void drawText(sf::RenderWindow* window, std::string text, int size, sf::Color color, sf::Vector2f position) {
-    sf::Text textProxy;
-    sf::Font font;
-    if (!font.loadFromFile("./DejaVuSans.ttf")) {
-        // sf::err() << "Couldn't load font\n";
-    }
-    textProxy.setFont(font);
-    textProxy.setString(text);
-    textProxy.setCharacterSize(size);
-    textProxy.setFillColor(color);
-    textProxy.setPosition(position);
-    window->draw(textProxy);
-}
-
 int main(int argc, char *argv[]) {
     // create the window
     Bundle bundle = Bundle(argv[0]);
