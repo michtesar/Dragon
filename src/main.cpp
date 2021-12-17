@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
-    sf::RenderWindow window(sf::VideoMode(800*2, 600*2), "Dragon Curve v0.2.5", sf::Style::Default, settings);
+    sf::RenderWindow window(sf::VideoMode(800*2, 600*2), "Dragon Curve v0.3.0", sf::Style::Default, settings);
     int iteration = 0;
     float compression = 1.0f;    
     GraphicsManager gm = GraphicsManager(&window);
