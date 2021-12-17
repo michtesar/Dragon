@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <filesystem>
+#include "graphics.h"
+#include "bundle.h"
 
 namespace fs = std::filesystem;
 
@@ -28,7 +30,7 @@ void drawText(sf::RenderWindow* window, std::string text, int size, sf::Color co
     sf::Text textProxy;
     sf::Font font;
     if (!font.loadFromFile("./DejaVuSans.ttf")) {
-        sf::err() << "Couldn't load font\n";
+        // sf::err() << "Couldn't load font\n";
     }
     textProxy.setFont(font);
     textProxy.setString(text);
@@ -38,8 +40,10 @@ void drawText(sf::RenderWindow* window, std::string text, int size, sf::Color co
     window->draw(textProxy);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     // create the window
+    Bundle bundle = Bundle(argv[0]);
+    
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
@@ -84,6 +88,9 @@ int main() {
             }
         }
 
+        // std::cout << "Path: " << bundle.getBundleRoot() << std::endl;
+        // std::cout << "Path: " << bundle.getBundleAsset("DejaVuSans.ttf") << std::endl;
+
         // clear the window with black color
         window.clear(sf::Color(25, 25, 25, 255));
 
@@ -93,6 +100,13 @@ int main() {
 
         drawText(&window, "Iteration " + std::to_string(i), 52, sf::Color(255, 255, 255, 255), sf::Vector2f(200.0, 1050.0));
         drawText(&window, "Compression " + std::to_string(int(compression*100)-100), 52, sf::Color(255, 255, 255, 255), sf::Vector2f(1000.0, 1050.0));
+
+        GraphicsManager gm = GraphicsManager(&window);
+        gm.drawLine(sf::Vector2f(100, 100), sf::Vector2f(300, 400), sf::Color(255, 255, 0, 255));
+        
+        gm.drawText(sf::Vector2f(200, 200), sf::Color(255, 255, 255, 255), 52, "Sample Example", bundle.getBundleAsset("DejaVuSans.ttf"));
+        drawText(&window, bundle.getBundleRoot(), 52, sf::Color(255, 255, 255, 255), sf::Vector2f(100.0, 100.0));
+        // std::cout << bundle.getBundleAsset("DejaVuSans.ttf") << std::endl;
 
         // end the current frame
         window.display();
