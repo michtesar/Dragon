@@ -98,16 +98,25 @@ int main(int argc, char *argv[]) {
         // Dragon curve
         // https://github.com/kurinurm/dragon-curve/blob/master/dragon%20curve%20with%20pygame.py
         unfoldCurve(&window, i, 0, 0, 0, 800, 0, 450, 650, compression, compression);
-
-        drawText(&window, "Iteration " + std::to_string(i), 52, sf::Color(255, 255, 255, 255), sf::Vector2f(200.0, 1050.0));
-        drawText(&window, "Compression " + std::to_string(int(compression*100)-100), 52, sf::Color(255, 255, 255, 255), sf::Vector2f(1000.0, 1050.0));
-
-        GraphicsManager gm = GraphicsManager(&window);
-        gm.drawLine(sf::Vector2f(100, 100), sf::Vector2f(300, 400), sf::Color(255, 255, 0, 255));
         
-        gm.drawText(sf::Vector2f(200, 200), sf::Color(255, 255, 255, 255), 52, "Sample Example", &fontDejaVuSans.font);
-        drawText(&window, bundle.getBundleRoot(), 52, sf::Color(255, 255, 255, 255), sf::Vector2f(100.0, 100.0));
-        // std::cout << bundle.getBundleAsset("DejaVuSans.ttf") << std::endl;
+        GraphicsManager gm = GraphicsManager(&window);
+
+        gm.drawText(
+            sf::Vector2f(200, 1050),
+            sf::Color(255, 255, 255, 255),
+            52,
+            "Iteration " + std::to_string(i),
+            &fontDejaVuSans.font
+        );
+        gm.drawText(
+            sf::Vector2f(1000, 1050),
+            sf::Color(255, 255, 255, 255),
+            52,
+            "Compression " + std::to_string(int(compression*100)-100),
+            &fontDejaVuSans.font
+        );
+
+        // gm.drawLine(sf::Vector2f(100, 100), sf::Vector2f(300, 400), sf::Color(255, 255, 0, 255));
 
         // end the current frame
         window.display();
