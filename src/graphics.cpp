@@ -80,7 +80,6 @@ bool Font::initialize() {
         sf::err() << "Couldn't load font from" << filePath << "\n";
         return false;
     } else {
-        std::cout << "Font loaded from " << filePath << std::endl;
         return true;
     }
 };
