@@ -21,7 +21,6 @@ class Line {
         sf::Color color;
     public:
         Line(sf::Vector2f p1, sf::Vector2f p2, sf::Color color);
-        ~Line();
         bool draw(sf::RenderWindow* window);
 };
 
@@ -34,7 +33,6 @@ class Text {
         sf::Font font;
     public:
         Text(std::string string, sf::Vector2f position, sf::Color color, int size, std::string filePath);
-        ~Text();
         bool draw(sf::RenderWindow* window);
 };
 
@@ -44,7 +42,6 @@ class Font {
         std::string filePath;
     public:
         Font(std::string filePath);
-        ~Font();
         bool initialize();
         sf::Font getFont();
 };

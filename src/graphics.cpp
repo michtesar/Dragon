@@ -36,8 +36,6 @@ Line::Line(sf::Vector2f p1, sf::Vector2f p2, sf::Color color) {
     this->color = color;
 };
 
-Line::~Line() {};
-
 bool Line::draw(sf::RenderWindow* window) {
     sf::Vertex vertices[] = {
         sf::Vertex(p1, color),
@@ -61,8 +59,6 @@ Text::Text(
     this->font = Font(filePath).getFont();
 };
 
-Text::~Text() {};
-
 bool Text::draw(sf::RenderWindow* window) {
     sf::Text text;
     text.setFont(font);
@@ -78,8 +74,6 @@ Font::Font(std::string filePath) {
     this->filePath = filePath;
     initialize();
 };
-
-Font::~Font() {};
 
 bool Font::initialize() {
     if (!this->font.loadFromFile(this->filePath)) {
