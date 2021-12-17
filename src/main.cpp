@@ -1,4 +1,3 @@
-// About DC https://www.instructables.com/Dragon-Curve-Using-Python/
 #include <SFML/Graphics.hpp>
 #include "graphics.h"
 #include "bundle.h"
@@ -13,7 +12,7 @@ int main(int argc, char *argv[]) {
     Bundle bundle = Bundle(argv[0]);
     Font fontDejaVuSans = Font(bundle.getBundleAsset(FONT_DEJAVU_SANS));
     
-    // Create a main window
+    // Create a main window with settings
     sf::ContextSettings settings;
     settings.antialiasingLevel = ANTIALIASING;
     std::string version = "v" + 
@@ -27,7 +26,7 @@ int main(int argc, char *argv[]) {
         settings
     );
 
-    // Create a grpahics manager for drawing on window    
+    // Create a graphics manager for drawing on window    
     GraphicsManager gm = GraphicsManager(&window);
 
     // Initialize the fractal engine
@@ -35,10 +34,9 @@ int main(int argc, char *argv[]) {
     float compression = 1.0f;
     Fractal fractal = Fractal(&gm, 15, 450, 650);
     
-    // Inititalize keyboard and event system
+    // Inititalize and process keyboard and events
     KeyboardProcessor keyboardProcessor;
     EventProcessor eventsProcessor;
-
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -52,10 +50,13 @@ int main(int argc, char *argv[]) {
             eventsProcessor.process(&event, &window);
         }
 
+        // Clear buffer with dark grey color
         window.clear(sf::Color(25, 25, 25, 255));
 
+        // Unfold corresponding iteration of the dragon curve
         fractal.unfoldIteration(15-iteration, 0, 0, 800, 0, compression, compression);
 
+        // Show informative text to use about iteration
         gm.drawText(
             sf::Vector2f(200, 1050),
             sf::Color(255, 255, 255, 255),
@@ -63,6 +64,8 @@ int main(int argc, char *argv[]) {
             "Iteration " + std::to_string(iteration),
             &fontDejaVuSans.font
         );
+
+        // Show informative text to use about compression
         gm.drawText(
             sf::Vector2f(1000, 1050),
             sf::Color(255, 255, 255, 255),
@@ -71,7 +74,9 @@ int main(int argc, char *argv[]) {
             &fontDejaVuSans.font
         );
 
+        // Swap buffers
         window.display();
     }
+
     return 0;
 }
