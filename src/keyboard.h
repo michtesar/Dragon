@@ -4,6 +4,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+/**
+ * @brief Keyboard event processor
+ * Process the keypresses in the curren
+ * window.
+ */
 class KeyboardProcessor {
     public:
         void process(
@@ -16,6 +21,15 @@ class KeyboardProcessor {
         void closeWindow();
 };
 
+/**
+ * @brief Main keyboard processor memeber method
+ * 
+ * @param iteration current frame iteration.
+ * @param compression current frame compression.
+ * @param compressionStep compression step to be used.
+ * @param maxIteration maximum number of allowed iterations.
+ * @param window which window emits and reciev the events.
+ */
 void KeyboardProcessor::process(
     int* iteration, 
     float* compression, 
