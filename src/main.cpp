@@ -6,6 +6,7 @@
 #include "version.h"
 #include "config.h"
 #include "keyboard.h"
+#include "events.h"
 
 int main(int argc, char *argv[]) {
     // Initialize bundle and fonts before opening window
@@ -33,7 +34,10 @@ int main(int argc, char *argv[]) {
 
     // Initialize the fractal engine
     Fractal fractal = Fractal(&gm, 15, 450, 650);
+    
+    // Inititalize keyboard and event system
     KeyboardProcessor keyboardProcessor;
+    EventProcessor eventsProcessor;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -45,8 +49,7 @@ int main(int argc, char *argv[]) {
                 &fractal.maxIteration, 
                 &window
             );
-            if (event.type == sf::Event::Closed)
-                window.close();
+            eventsProcessor.process(&event, &window);
         }
 
         window.clear(sf::Color(25, 25, 25, 255));
