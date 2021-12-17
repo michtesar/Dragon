@@ -26,13 +26,13 @@ int main(int argc, char *argv[]) {
         sf::Style::Default, 
         settings
     );
-    int iteration = 0;
-    float compression = 1.0f;
 
     // Create a grpahics manager for drawing on window    
     GraphicsManager gm = GraphicsManager(&window);
 
     // Initialize the fractal engine
+    int iteration = 0;
+    float compression = 1.0f;
     Fractal fractal = Fractal(&gm, 15, 450, 650);
     
     // Inititalize keyboard and event system
