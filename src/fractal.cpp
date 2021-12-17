@@ -1,5 +1,4 @@
 #include "fractal.h"
-#include <istream>
 #include <SFML/Graphics.hpp>
 
 Fractal::Fractal(
