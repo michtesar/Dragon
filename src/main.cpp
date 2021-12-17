@@ -43,6 +43,7 @@ void drawText(sf::RenderWindow* window, std::string text, int size, sf::Color co
 int main(int argc, char *argv[]) {
     // create the window
     Bundle bundle = Bundle(argv[0]);
+    Font fontDejaVuSans = Font(bundle.getBundleAsset("DejaVuSans.ttf"));
     
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
@@ -104,7 +105,7 @@ int main(int argc, char *argv[]) {
         GraphicsManager gm = GraphicsManager(&window);
         gm.drawLine(sf::Vector2f(100, 100), sf::Vector2f(300, 400), sf::Color(255, 255, 0, 255));
         
-        gm.drawText(sf::Vector2f(200, 200), sf::Color(255, 255, 255, 255), 52, "Sample Example", bundle.getBundleAsset("DejaVuSans.ttf"));
+        gm.drawText(sf::Vector2f(200, 200), sf::Color(255, 255, 255, 255), 52, "Sample Example", &fontDejaVuSans.font);
         drawText(&window, bundle.getBundleRoot(), 52, sf::Color(255, 255, 255, 255), sf::Vector2f(100.0, 100.0));
         // std::cout << bundle.getBundleAsset("DejaVuSans.ttf") << std::endl;
 

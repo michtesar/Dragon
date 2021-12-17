@@ -23,9 +23,9 @@ bool GraphicsManager::drawText(
     sf::Color color, 
     int size, 
     std::string text, 
-    std::string fontName
+    sf::Font* font
 ) {
-    Text textLabel = Text(text, position, color, size, fontName);
+    Text textLabel = Text(text, position, color, size, font);
     textLabel.draw(window);
     return true;
 };
@@ -50,18 +50,18 @@ Text::Text(
     sf::Vector2f position, 
     sf::Color color, 
     int size, 
-    std::string filePath
+    sf::Font* font
 ) {
     this->string = string;
     this->position = position;
     this->color = color;
     this->size = size;
-    this->font = Font(filePath).getFont();
+    this->font = font;
 };
 
 bool Text::draw(sf::RenderWindow* window) {
     sf::Text text;
-    text.setFont(font);
+    text.setFont(*font);
     text.setString(string);
     text.setCharacterSize(size);
     text.setFillColor(color);
@@ -83,8 +83,4 @@ bool Font::initialize() {
         std::cout << "Font loaded from " << filePath << std::endl;
         return true;
     }
-};
-
-sf::Font Font::getFont() {
-    return font;
 };

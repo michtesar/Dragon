@@ -11,7 +11,7 @@ class GraphicsManager {
         GraphicsManager(sf::RenderWindow* window);
         ~GraphicsManager();
         bool drawLine(sf::Vector2f p1, sf::Vector2f p2, sf::Color color);
-        bool drawText(sf::Vector2f position, sf::Color color, int size, std::string text, std::string font);
+        bool drawText(sf::Vector2f position, sf::Color color, int size, std::string text, sf::Font* font);
 };
 
 class Line {
@@ -30,20 +30,19 @@ class Text {
         sf::Color color;
         int size;
         std::string string;
-        sf::Font font;
+        sf::Font* font;
     public:
-        Text(std::string string, sf::Vector2f position, sf::Color color, int size, std::string filePath);
+        Text(std::string string, sf::Vector2f position, sf::Color color, int size, sf::Font* font);
         bool draw(sf::RenderWindow* window);
 };
 
 class Font {
     private:
-        sf::Font font;
         std::string filePath;
     public:
+        sf::Font font;
         Font(std::string filePath);
         bool initialize();
-        sf::Font getFont();
 };
 
 #endif
