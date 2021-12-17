@@ -1,4 +1,3 @@
-#include <iostream>
 #include "bundle.h"
 
 Bundle::Bundle(char* basePath) {
