@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 project(Dragon)
 
-
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
 link_libraries(sfml-graphics)
