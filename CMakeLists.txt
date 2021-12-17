@@ -16,6 +16,7 @@ add_executable(
         ${PROJECT_SOURCE_DIR}/src/fractal.cpp
         ${PROJECT_SOURCE_DIR}/src/version.h
         ${PROJECT_SOURCE_DIR}/src/config.h
+        ${PROJECT_SOURCE_DIR}/src/keyboard.h
     )
 target_include_directories(Dragon PRIVATE ${PROJECT_SOURCE_DIR}/src)
 target_compile_features(Dragon PRIVATE cxx_std_17)
