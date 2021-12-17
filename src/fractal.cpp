@@ -23,7 +23,6 @@ void Fractal::unfoldIteration(
     float compressionX, 
     float compressionY
 ) {
-    std::cout << iteration << std::endl;
     if (iteration >= maxIteration) {
         gm->drawLine(
             sf::Vector2f(x1 + offsideX, y1 + offsideY),

@@ -1,0 +1,4 @@
+#define WINDOW_WIDTH 800*2
+#define WINDOW_HEIGTH 600*2
+#define FONT_DEJAVU_SANS "DejaVuSans.ttf"
+#define ANTIALIASING 8

@@ -1,22 +1,36 @@
 // About DC https://www.instructables.com/Dragon-Curve-Using-Python/
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include "graphics.h"
 #include "bundle.h"
 #include "fractal.h"
+#include "version.h"
+#include "config.h"
 
 int main(int argc, char *argv[]) {
-    // create the window
+    // Initialize bundle and fonts before opening window
     Bundle bundle = Bundle(argv[0]);
-    Font fontDejaVuSans = Font(bundle.getBundleAsset("DejaVuSans.ttf"));
+    Font fontDejaVuSans = Font(bundle.getBundleAsset(FONT_DEJAVU_SANS));
     
+    // Create a main window
     sf::ContextSettings settings;
-    settings.antialiasingLevel = 8;
-
-    sf::RenderWindow window(sf::VideoMode(800*2, 600*2), "Dragon Curve v0.3.0", sf::Style::Default, settings);
+    settings.antialiasingLevel = ANTIALIASING;
+    std::string version = "v" + 
+        std::to_string(DRAGON_VERSION_MAJOR) + "." + 
+        std::to_string(DRAGON_VERSION_MINOR) + "." + 
+        std::to_string(DRAGON_VERSION_PATCH);
+    sf::RenderWindow window(
+        sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGTH), 
+        "Dragon Curve " + version, 
+        sf::Style::Default, 
+        settings
+    );
     int iteration = 0;
-    float compression = 1.0f;    
+    float compression = 1.0f;
+
+    // Create a grpahics manager for drawing on window    
     GraphicsManager gm = GraphicsManager(&window);
+
+    // Initialize the fractal engine
     Fractal fractal = Fractal(&gm, 15, 450, 650);
 
     while (window.isOpen()) {
@@ -55,7 +69,6 @@ int main(int argc, char *argv[]) {
 
         window.clear(sf::Color(25, 25, 25, 255));
 
-        // https://github.com/kurinurm/dragon-curve/blob/master/dragon%20curve%20with%20pygame.py
         fractal.unfoldIteration(15-iteration, 0, 0, 800, 0, compression, compression);
 
         gm.drawText(
@@ -72,6 +85,7 @@ int main(int argc, char *argv[]) {
             "Compression " + std::to_string(int(compression*100)-100),
             &fontDejaVuSans.font
         );
+
         window.display();
     }
     return 0;

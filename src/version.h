@@ -1,0 +1,8 @@
+#ifndef VERSION_H
+#define VERSION_H
+
+#define DRAGON_VERSION_MAJOR 0
+#define DRAGON_VERSION_MINOR 3
+#define DRAGON_VERSION_PATCH 2
+
+#endif
